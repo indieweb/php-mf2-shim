@@ -2,8 +2,6 @@
 
 namespace mf2\Shim\test;
 
-$autoloader = require_once dirname(__DIR__) . '/../vendor/autoload.php';
-
 use mf2\Parser,
     mf2\Shim,
     PHPUnit_Framework_TestCase,
@@ -20,7 +18,7 @@ class InstagramTest extends PHPUnit_Framework_TestCase {
 
     public function testHEntryFromTweet() {
         $input = file_get_contents('./tests/mf2/example-instagram.html');
-        $parser = new mf2\Shim\Instagram($input);
+        $parser = new Shim\Instagram($input);
         $output = $parser->parse();
 
         $this->assertArrayHasKey('items', $output);

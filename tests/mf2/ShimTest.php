@@ -2,9 +2,6 @@
 
 namespace mf2\Shim\test;
 
-// Include Parser.php
-$autoloader = require_once dirname(__DIR__) . '/../vendor/autoload.php';
-
 use mf2\Parser,
     mf2\Shim,
     PHPUnit_Framework_TestCase,
