@@ -23,6 +23,8 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
 
         $this->assertArrayHasKey('items', $output);
         $this->assertArrayHasKey('content', $output['items'][0]['properties']);
+        # $properties = $output['items'][0]['properties'];
+        # $this->assert;
     }
 
 }
