@@ -75,11 +75,15 @@ class Twitter extends Shim {
 						'url' => array($urlEl->getAttribute('href')),
 						'published' => array($publishedDateTime),
 						'author' => array(
-							'type' => array('h-card'),
-							'name' => array($authorNameEl->nodeValue),
-							'nickname' => array($authorNickEl->nodeValue),
-							'photo' => array($authorPhotoEl->getAttribute('src')),
-							'url' => array('https://twitter.com/' . $authorNickEl->nodeValue)
+								array(
+								'type' => array('h-card'),
+								'properties' => array(
+									'name' => array($authorNameEl->nodeValue),
+									'nickname' => array($authorNickEl->nodeValue),
+									'photo' => array($authorPhotoEl->getAttribute('src')),
+									'url' => array('https://twitter.com/' . $authorNickEl->nodeValue)
+								)
+							)
 						)
 					)
 				);
