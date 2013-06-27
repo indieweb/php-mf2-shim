@@ -50,7 +50,6 @@ class Twitter extends Shim {
         'category' => $tags
       );
 
-
       $items[] = $item;
     }
 
