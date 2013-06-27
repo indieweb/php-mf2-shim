@@ -57,7 +57,7 @@ class Twitter extends Shim {
 				$tweetTextEl = $this->xpath('.//p[contains(concat(" ", @class, " "), " tweet-text ")]', $reply)->item(0);
 				
 				$authorNameEl = $this->xpath('.//*[contains(concat(" ", @class, " "), " fullname ")]', $reply)->item(0);
-				$authorNickEl = $this->xpath('.//*[contains(concat(" ", @class, " "), " fullname ")]', $reply)->item(0);
+				$authorNickEl = $this->xpath('.//*[contains(concat(" ", @class, " "), " username ")]', $reply)->item(0);
 				$authorPhotoEl = $this->xpath('.//*[contains(concat(" ", @class, " "), " avatar ")]', $reply)->item(0);
 				
 				$publishedEl = $this->xpath('.//*[contains(concat(" ", @class, " "), " _timestamp ")]', $reply)->item(0);

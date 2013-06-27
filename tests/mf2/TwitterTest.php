@@ -62,6 +62,7 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
 			$author = $comment['author'][0]['properties'];
 			
 			$this->assertEquals('Rachel Kalmar', $author['name'][0]);
+			$this->assertEquals('@grapealope', $author['nickname'][0]);
 		}
 }
 
