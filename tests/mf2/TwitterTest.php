@@ -43,6 +43,7 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
 			$author = $output['items'][0]['properties']['author'][0];
 			
 			$this->assertEquals('https://twitter.com/@aaronpk', $author['properties']['url'][0]);
+			$this->assertEquals('https://si0.twimg.com/profile_images/3657148842/934fb225b84b8fd3effe5ab95bb18005_normal.jpeg', $author['properties']['photo'][0]);
 		}
 }
 
