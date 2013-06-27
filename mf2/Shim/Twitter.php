@@ -47,7 +47,8 @@ class Twitter extends Shim {
         ),
         'url' => '',
         'published' => '',
-        'category' => $tags
+        'category' => $tags,
+				'comment' => []
       );
 
       $items[] = $item;

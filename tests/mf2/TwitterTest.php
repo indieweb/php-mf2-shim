@@ -52,6 +52,9 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
 		 */
 		public function testHEntryHasComments($output) {
 			$this->assertArrayHasKey('comment', $output['items'][0]['properties']);
+			$comments = $output['items'][0]['properties']['comment'];
+			
+			$this->assertCount(1, $comments);
 		}
 }
 
