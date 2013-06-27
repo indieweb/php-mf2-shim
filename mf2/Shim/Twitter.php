@@ -16,15 +16,15 @@ class Twitter extends Shim {
   public function parse() {
     $items = array();
 
-    foreach($this->cssQuery('div.tweet.permalink-tweet p') as $node) {
+    foreach($this->cssQuery('div.tweet.permalink-tweet > p') as $node) {
       $item = array();
-
-      $tweetText = $node->nodeValue;
+			
+			$tweetText = $node->nodeValue;
       $authorName = $this->single('div.tweet.permalink-tweet .fullname');
       $authorNickname = $this->single('div.tweet.permalink-tweet .username');
-      $authorPhoto = $this->single('div.tweet.permalink-tweet .avatar');
+      $authorPhoto = $this->querySelector('div.tweet.permalink-tweet .avatar')->getAttribute('src');
       $authorURL = 'https://twitter.com/' . $authorNickname;
-
+      
 #      var_dump($tweetText);
 
       $tags = array();
@@ -32,7 +32,8 @@ class Twitter extends Shim {
       $item['type'] = array('h-entry');
       $item['properties'] = array(
         'name' => array($tweetText),
-        'content' => array($tweetText),
+				'content' => array($tweetText), // TODO: this should be C14N of node children
+        'summary' => array($tweetText),
         'author' => array(
           array(
             'type' => array('h-card'),
@@ -55,5 +56,4 @@ class Twitter extends Shim {
 
     return array('items' => array_values(array_filter($items)));
   }
-
 }

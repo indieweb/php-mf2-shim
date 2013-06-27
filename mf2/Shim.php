@@ -78,11 +78,20 @@ class Shim {
   }
 
   // retrieve a single value given a CSS selector
+	// TODO: why is this returning the nodeValue?
   public function single($selector) {
     foreach($this->cssQuery($selector) as $n){
       return $n->nodeValue;
     }
-    return false;
+		
+    return null;
   }
-
+	
+	public function querySelector($selector) {
+		foreach ($this->cssQuery($selector) as $n) {
+			return $n;
+		}
+		
+		return null;
+	}
 }
