@@ -21,6 +21,8 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
         $parser = new Shim\Twitter($input);
         $output = $parser->parse();
 				
+				print_r($output);
+				
         $this->assertArrayHasKey('items', $output);
 				$this->assertCount(1, $output['items']);
 				

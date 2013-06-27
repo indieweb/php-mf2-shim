@@ -94,4 +94,8 @@ class Shim {
 		
 		return null;
 	}
+	
+	public function xpath($selector, $context = null) {
+		return $this->xpath->query($selector, $context);
+	}
 }
