@@ -7,9 +7,6 @@ use Exception;
 
 class Twitter extends Shim {
 
-  // TODO: parse() method that returns an 'items' array that corresponds to if twitter.com
-  // had proper microformats markup
-
   /**
    * Kicks off the parsing routine
    * 
@@ -41,10 +38,12 @@ class Twitter extends Shim {
         'name' => array($tweetText),
 				'content' => array($tweetText), // TODO: this should be C14N of node children
         'summary' => array($tweetText),
+				'uid' => array(),
         'author' => array(
           array(
             'type' => array('h-card'),
             'properties' => array(
+							'uid' => array(),
               'name' => array($authorName),
               'nickname' => array($authorNickname),
               'photo' => array($authorPhoto),
@@ -81,6 +80,7 @@ class Twitter extends Shim {
 				$reply = array(
 					'type' => array('h-entry'),
 					'properties' => array(
+						'uid' => array(),
 						'name' => array($tweetTextEl->nodeValue),
 						'content' => array($tweetTextEl->nodeValue), // TODO: use HTML
 						'summary' => array($tweetTextEl->nodeValue),
@@ -90,6 +90,7 @@ class Twitter extends Shim {
 								array(
 								'type' => array('h-card'),
 								'properties' => array(
+									'uid' => array(),
 									'name' => array($authorNameEl->nodeValue),
 									'nickname' => array($authorNickEl->nodeValue),
 									'photo' => array($authorPhotoEl->getAttribute('src')),
