@@ -3,6 +3,7 @@ namespace mf2\Shim;
 
 use mf2\Shim;
 use DateTime;
+use Exception;
 
 class Twitter extends Shim {
 
@@ -25,7 +26,14 @@ class Twitter extends Shim {
       $authorNickname = $this->single('div.tweet.permalink-tweet .username');
       $authorPhoto = $this->querySelector('div.tweet.permalink-tweet .avatar')->getAttribute('src');
       $authorURL = 'https://twitter.com/' . $authorNickname;
-      
+			
+      $publishedTS = $this->querySelector('div.permalink-tweet ._timestamp')->getAttribute('data-time');
+			try {
+				$publishedDateTime = DateTime::createFromFormat('U', $publishedTS)->format(DateTime::W3C);
+			} catch (Exception $e) {
+				$publishedDateTime = '';
+			}
+			
       $tags = array();
 
       $item['type'] = array('h-entry');
@@ -44,10 +52,10 @@ class Twitter extends Shim {
             )
           )
         ),
-        'url' => '',
-        'published' => '',
+        'url' => array(''),
+        'published' => array($publishedDateTime),
         'category' => $tags,
-				'comment' => []
+				'comment' => array()
       );
 
 			// Process replies
@@ -62,7 +70,11 @@ class Twitter extends Shim {
 				
 				$publishedEl = $this->xpath('.//*[contains(concat(" ", @class, " "), " _timestamp ")]', $reply)->item(0);
 				$publishedTimestamp = $publishedEl->getAttribute('data-time');
-				$publishedDateTime = DateTime::createFromFormat('U', $publishedTimestamp)->format(DateTime::W3C);
+				try {
+					$publishedDateTime = DateTime::createFromFormat('U', $publishedTimestamp)->format(DateTime::W3C);
+				} catch (Exception $e) {
+					$publishedDateTime = '';
+				}
 				
 				$urlEl = $this->xpath('.//*[contains(concat(" ", @class, " "), " tweet-timestamp ")]', $reply)->item(0);
 				

@@ -39,6 +39,14 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
 		/**
 		 * @depends testParsesHEntryFromTweetPermalinkHtml
 		 */
+		public function testHEntryHasPublished($output) {
+			$this->assertArrayHasKey('published', $output['items'][0]['properties']);
+			$this->assertEquals('2013-05-13T02:30:56+00:00', $output['items'][0]['properties']['published'][0]);
+		}
+		
+		/**
+		 * @depends testParsesHEntryFromTweetPermalinkHtml
+		 */
 		public function testHEntryHasAuthor($output) {
 			$this->assertArrayHasKey('author', $output['items'][0]['properties']);
 			
