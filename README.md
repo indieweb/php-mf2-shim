@@ -1,9 +1,15 @@
 php-mf2-shim
 ============
 
-A parsing library for parsing pages from a few common non-mf2 sites into the mf2 structure
+A parsing library for parsing pages from a few common non-mf2 sites into the mf2 structure.
 
-## Warning!
+Currently basic Twitter tweet permalink parsing is implemented, including author and reply tweets. Check the tests to see exactly what is handled, usage instructions will arrive once the API is a little more stable and we’ve started using the shim on our own sites.
 
-This code is very much in progress at the moment! Feel free to contribute to development, or feel free to stay away from it while I keep working on it.
+## Changelog
 
+### v0.1.0 (2013-06-07)
+
+* Initial tagged release
+* MIT Licenesed
+* Twitter tests passing, Instagram test failing
+* Tweet permalink page parsing working including authors and reply tweets
