@@ -1,6 +1,7 @@
 {
   "name": "mf2/shim",
   "type": "library",
+  "license": "MIT",
   "description": "A parsing library for parsing pages from a few common non-mf2 sites into the mf2 structure",
   "keywords": ["microformats", "microformats 2", "parser", "semantic", "twitter", "instagram"],
   "authors" : [
