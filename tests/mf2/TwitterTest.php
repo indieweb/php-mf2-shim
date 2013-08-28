@@ -34,6 +34,7 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
 		 */
 		public function testHEntryHasContent($output) {
 			$this->assertArrayHasKey('content', $output['items'][0]['properties']);
+			$this->assertEquals('Started off the week getting up at 5am, ended the week going to sleep at 5am. I am my own little timezone. (http://aaron.pk/n4Px1)', $output['items'][0]['properties']['content'][0]);
 		}
 		
 		/**
