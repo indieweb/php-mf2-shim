@@ -1,13 +1,21 @@
 php-mf2-shim
 ============
 
-A parsing library for parsing pages from a few common non-mf2 sites into the mf2 structure.
+An extension for [php-mf2](https://github.com/indieweb/php-mf2) which screen-scrapes some sites which don’t support [microformats2](http://microformats.org/wiki/microformats2) into canonical microformats data structures to make them easy to consume.
+
+Supported sites:
+
+* **twitter.com** — tweets are parsed as h-entries with h-card authors, replies to tweets on permalink pages are parsed
+
+Work-in-progress:
+
+* instagram.com — no support right now
 
 ## Installation
 
 Install php-mf2-shim with Composer by adding "mf2/shim": "0.2.*" to the require object in your composer.json and running `php composer.phar update`.
 
-You could install it by just downloading /Mf2/functions.php, /Mf2/Shim/*.php and including those, but please use Composer. Seriously, it’s amazing.
+You could install it by just downloading php-mf2, /Mf2/functions.php, /Mf2/Shim/*.php and including those, but please use Composer. Seriously, it’s amazing.
 
 ## Usage
 
