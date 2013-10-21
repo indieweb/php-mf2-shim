@@ -14,7 +14,7 @@ You could install it by just downloading /Mf2/functions.php, /Mf2/Shim/*.php and
 mf2-shim is PSR-0 autoloadable, so all you have to do to load it is:
 
 * Include Composer’s auto-generated autoload file (/vendor/autoload.php)
-* Call Mf2\parseTwitter() with the HTML (or a DOMDocument), and optionally the URL to resolve relative URLs against.
+* Call Mf2\Shim\parseTwitter() with the HTML (or a DOMDocument), and optionally the URL to resolve relative URLs against.
 
 ## Examples
 
