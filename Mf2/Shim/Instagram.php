@@ -1,9 +1,9 @@
 <?php
-namespace mf2\Shim;
+namespace Mf2\Shim;
 
-use mf2\Shim;
+use Mf2\Parser;
 
-class Instagram extends Shim {
+class Instagram extends Parser {
 
   // TODO: parse() method that returns an 'items' array that corresponds to if instagram.com
   // had proper microformats markup
@@ -18,6 +18,4 @@ class Instagram extends Shim {
 
     return array('items' => array_values(array_filter($mfs)));
   }
-
-
 }

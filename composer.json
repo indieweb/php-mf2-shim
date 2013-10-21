@@ -16,17 +16,12 @@
   ],
   "require": {
     "php": ">=5.3.0",
-    "mf2/mf2": "*",
-    "symfony/css-selector": "*"
+		"mf2/mf2": "0.2.*"
   },
   "require-dev": {
     "phpunit/phpunit": "3.7.*"
   },
   "autoload": {
-    "psr-0": {
-      "mf2\\Shim": "",
-      "mf2\\Shim\\Twitter": "",
-      "mf2\\Shim\\Instagram": ""
-    }
+		"files": ["Mf2/functions.php", "Mf2/Shim/Twitter.php", "Mf2/Shim/Instagram.php"]
   }
 }
