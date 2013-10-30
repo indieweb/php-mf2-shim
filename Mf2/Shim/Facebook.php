@@ -22,12 +22,12 @@ class Facebook extends Mf2\Parser {
 	public function parsePost(DOMElement $el) {
 		$authorPhoto = $this->query('.//*' . Mf2\xpcs('fbStreamPermalinkHeader') . '//*' . Mf2\xpcs('profilePic'))->item(0)->getAttribute('src');
 		$authorLink = $this->query('.//*' . Mf2\xpcs('permalinkHeaderInfo') . '/a')->item(0);
-		$authorUrl = $authorLink->getAttribute('href');
+		$authorUrl = $this->resolveUrl($authorLink->getAttribute('href'));
 		$authorName = trim($authorLink->textContent);
 		
 		$postLink = $this->query('.//*' . Mf2\xpcs('permalinkHeaderContentText') . '//*' . Mf2\xpcs('uiStreamSource') . '/a')->item(0);
 		// TODO: resolve once php-mf2 is updated making ->resolveUrl() public
-		$postUrl = $postLink->getAttribute('href');
+		$postUrl = $this->resolveUrl($postLink->getAttribute('href'));
 		$postPublished = fbTimeToIso8601($this->query('./abbr', $postLink)->item(0)->getAttribute('title'));
 		
 		$contentEl = $this->query('.//*' . Mf2\xpcs('userContentWrapper') . '//*' . Mf2\xpcs('userContent'))->item(0);
