@@ -8,7 +8,8 @@ use Exception;
 
 function parseTwitter($html, $url=null) {
 	$parser = new Twitter($html, $url, false);
-	return array_merge($parser->parseRelsAndAlternates(), $parser->parse());
+	list($rels, $alternates) = $parser->parseRelsAndAlternates();
+	return array_merge(array('rels' => $rels, 'alternates' => $alternates), $parser->parse());
 }
 
 class Twitter extends Mf2\Parser {
