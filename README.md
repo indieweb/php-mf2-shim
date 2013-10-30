@@ -6,6 +6,7 @@ An extension for [php-mf2](https://github.com/indieweb/php-mf2) which screen-scr
 Supported sites:
 
 * **twitter.com** — tweets are parsed as h-entries with h-card authors, replies to tweets on permalink pages are parsed
+* **facebook.com** — post permalink pages are parsed as h-entries with h-card authors
 
 Work-in-progress:
 
@@ -22,7 +23,7 @@ You could install it by just downloading php-mf2, /Mf2/functions.php, /Mf2/Shim/
 mf2-shim is PSR-0 autoloadable, so all you have to do to load it is:
 
 * Include Composer’s auto-generated autoload file (/vendor/autoload.php)
-* Call Mf2\Shim\parseTwitter() with the HTML (or a DOMDocument), and optionally the URL to resolve relative URLs against.
+* Call Mf2\Shim\parseTwitter() or parseFacebook() with the HTML (or a DOMDocument), and optionally the URL to resolve relative URLs against.
 
 ## Examples
 
@@ -34,9 +35,15 @@ require 'vendor/autoload.php';
 use Mf2;
 
 $output = Mf2\Shim\parseTwitter($html, $url);
+$output = Mf2\Shim\parseFacebook($html, $url);
+
 ```
 
 ## Changelog
+
+### v0.2.1
+
+* Added first draft of support for Facebook post permalink shimming
 
 ### v0.2.0 (BREAKING)
 
