@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c17b25b145104700499613a1df64d442",
+    "hash": "133a3e9820e8d0d85c5fba7493e2061a",
     "packages": [
         {
             "name": "mf2/mf2",
-            "version": "v0.2.0",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/indieweb/php-mf2.git",
-                "reference": "5495925e2392a0969492864840e071fec7a3f18d"
+                "reference": "721c7de658cb2ceba6951173515f0d4612fcc75f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/indieweb/php-mf2/zipball/5495925e2392a0969492864840e071fec7a3f18d",
-                "reference": "5495925e2392a0969492864840e071fec7a3f18d",
+                "url": "https://api.github.com/repos/indieweb/php-mf2/zipball/721c7de658cb2ceba6951173515f0d4612fcc75f",
+                "reference": "721c7de658cb2ceba6951173515f0d4612fcc75f",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 "parser",
                 "semantic"
             ],
-            "time": "2013-10-20 15:40:46"
+            "time": "2013-10-30 14:04:50"
         }
     ],
     "packages-dev": [
