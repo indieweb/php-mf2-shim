@@ -15,7 +15,7 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testParsesHEntryFromTweetPermalinkHtml() {
-		$input = file_get_contents('./tests/mf2/example-twitter.html');
+		$input = file_get_contents('./tests/Mf2/example-twitter.html');
 		$output = Mf2\Shim\parseTwitter($input);
 		$this->assertArrayHasKey('items', $output);
 		$this->assertCount(1, $output['items']);
@@ -49,7 +49,7 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
 		$author = $output['items'][0]['properties']['author'][0];
 
 		$this->assertEquals('Aaron Parecki', $author['properties']['name'][0]);
-		$this->assertEquals('https://twitter.com/@aaronpk', $author['properties']['url'][0]);
+		$this->assertEquals('https://twitter.com/aaronpk', $author['properties']['url'][0]);
 		$this->assertEquals('https://si0.twimg.com/profile_images/3657148842/934fb225b84b8fd3effe5ab95bb18005_normal.jpeg', $author['properties']['photo'][0]);
 	}
 
@@ -68,4 +68,13 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('Rachel Kalmar', $author['name'][0]);
 		$this->assertEquals('@grapealope', $author['nickname'][0]);
 	}
+	
+	public function testParsesHCardHEntriesFromProfilePage() {
+		$input = file_get_contents('./tests/Mf2/example-twitter-2.html');
+		$output = Mf2\Shim\parseTwitter($input, 'https://twitter.com/briansuda');
+		$this->assertArrayHasKey('items', $output);
+		return $output;
+	}
+	
+	// to do: write more tests here
 }

@@ -45,7 +45,7 @@ class Twitter extends Mf2\Parser {
 					'html' =>  $htmlTweetContent
 				)),
 				'summary' => array($tweetTextEl->nodeValue),
-				'url' => array($urlEl->getAttribute('href')),
+				'url' => array($this->resolveUrl($urlEl->getAttribute('href'))),
 				'published' => array($publishedDateTime),
 				'author' => array(
 						array(
@@ -55,7 +55,7 @@ class Twitter extends Mf2\Parser {
 							'name' => array($authorNameEl->nodeValue),
 							'nickname' => array($authorNickEl->nodeValue),
 							'photo' => array($authorPhotoEl->getAttribute('src')),
-							'url' => array('https://twitter.com/' . $authorNickEl->nodeValue)
+							'url' => array('https://twitter.com/' . ltrim($authorNickEl->nodeValue, '@'))
 						)
 					)
 				)
@@ -71,6 +71,24 @@ class Twitter extends Mf2\Parser {
 		return $tweet;
 	}
 	
+	public function parseProfile(DOMElement $el) {
+		$photoEl = $this->query('.//*' . Mf2\xpcs('profile-picture') . '/img')->item(0);
+		$bio = $this->query('.//*' . Mf2\xpcs('bio'))->item(0)->nodeValue;
+		$location = $this->query('.//*' . Mf2\xpcs('location'))->item(0)->nodeValue;
+		$url = $this->query('.//*' . Mf2\xpcs('url') . '//a')->item(0)->getAttribute('title');
+		
+		return array(
+			'type' => array('h-card'),
+			'properties' => array(
+				'name' => array($photoEl->getAttribute('alt')),
+				'photo' => array($photoEl->getAttribute('src')),
+				'note' => array($bio),
+				'adr' => array($location),
+				'url' => array($url)
+			)
+		);
+	}
+	
 	/**
    * Parse
    * 
@@ -78,10 +96,21 @@ class Twitter extends Mf2\Parser {
    */
   public function parse() {
     $items = array();
-
-    foreach($this->query('//div' . Mf2\xpcs('tweet', 'permalink-tweet')) as $node) {
-      $items[] = $this->parseTweet($node);
-    }
+		
+		foreach($this->query('//*' . Mf2\xpcs('profile-card')) as $node) {
+			$items[] = $this->parseProfile($node);
+		}
+		
+		$permalinkTweets = $this->query('//*' . Mf2\xpcs('tweet', 'permalink-tweet'));
+		if ($permalinkTweets->length == 1) {
+			foreach($permalinkTweets as $node) {
+				$items[] = $this->parseTweet($node);
+			}
+		} else {
+			foreach ($this->query('//*' . Mf2\xpcs('stream-items') . '//*' . Mf2\xpcs('tweet')) as $node) {
+				$items[] = $this->parseTweet($node, false);
+			}
+		}
 
     return array('items' => array_values(array_filter($items)));
   }
