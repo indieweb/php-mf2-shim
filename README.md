@@ -41,6 +41,10 @@ $output = Mf2\Shim\parseFacebook($html, $url);
 
 ## Changelog
 
+### v0.2.2
+
+* Twitter parsing improved, now parses profile h-card and h-entries successfully from profile pages
+
 ### v0.2.1
 
 * Added first draft of support for Facebook post permalink shimming
