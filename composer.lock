@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "133a3e9820e8d0d85c5fba7493e2061a",
+    "hash": "426a4f0ff73313184666601a85cadc49",
     "packages": [
         {
             "name": "mf2/mf2",
-            "version": "v0.2.2",
+            "version": "v0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/indieweb/php-mf2.git",
-                "reference": "721c7de658cb2ceba6951173515f0d4612fcc75f"
+                "reference": "9c3ade97d4c3d243c9b1aa4477c5811d5a261a43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/indieweb/php-mf2/zipball/721c7de658cb2ceba6951173515f0d4612fcc75f",
-                "reference": "721c7de658cb2ceba6951173515f0d4612fcc75f",
+                "url": "https://api.github.com/repos/indieweb/php-mf2/zipball/9c3ade97d4c3d243c9b1aa4477c5811d5a261a43",
+                "reference": "9c3ade97d4c3d243c9b1aa4477c5811d5a261a43",
                 "shasum": ""
             },
             "require": {
@@ -28,6 +28,10 @@
             "suggest": {
                 "barnabywalters/mf-cleaner": "To more easily handle the canonical data php-mf2 gives you"
             },
+            "bin": [
+                "bin/fetch-mf2",
+                "bin/parse-mf2"
+            ],
             "type": "library",
             "autoload": {
                 "files": [
@@ -52,7 +56,7 @@
                 "parser",
                 "semantic"
             ],
-            "time": "2013-10-30 14:04:50"
+            "time": "2013-11-12 22:20:06"
         }
     ],
     "packages-dev": [
@@ -425,17 +429,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.3.6",
+            "version": "v2.3.7",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "6bb881b948368482e1abf1a75c08bcf88a1c5fc3"
+                "reference": "c1bda5b459d792cb253de12c65beba3040163b2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/6bb881b948368482e1abf1a75c08bcf88a1c5fc3",
-                "reference": "6bb881b948368482e1abf1a75c08bcf88a1c5fc3",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/c1bda5b459d792cb253de12c65beba3040163b2b",
+                "reference": "c1bda5b459d792cb253de12c65beba3040163b2b",
                 "shasum": ""
             },
             "require": {
@@ -468,7 +472,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2013-09-22 18:04:39"
+            "time": "2013-10-17 11:48:01"
         }
     ],
     "aliases": [
