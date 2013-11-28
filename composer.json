@@ -23,5 +23,6 @@
   },
   "autoload": {
 		"files": ["Mf2/functions.php", "Mf2/Shim/Twitter.php", "Mf2/Shim/Instagram.php", "Mf2/Shim/Facebook.php"]
-  }
+  },
+  "minimum-stability": "dev"
 }
