@@ -41,6 +41,13 @@ $output = Mf2\Shim\parseFacebook($html, $url);
 
 ## Changelog
 
+### v0.2.4
+
+* Improved pre-processing of in-tweet links, removing twitter gunk and t.co URLs for cleaner content.
+
+### v0.2.3
+* TODO: what happened in this update? It exists but the changelog wasn’t updated.
+
 ### v0.2.2
 
 * Twitter parsing improved, now parses profile h-card and h-entries successfully from profile pages
