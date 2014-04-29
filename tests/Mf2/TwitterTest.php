@@ -76,5 +76,9 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
 		return $output;
 	}
 	
-	// to do: write more tests here
+	public function testPreprocessesTweetContent() {
+		$input = file_get_contents('./tests/Mf2/kartikprabhu-twitter.html');
+		$output = Mf2\shim\parseTwitter($input, 'https://twitter.com/kartik_prabhu/status/449032538476929024');
+		$this->assertEquals('The #indieweb or: how I learnt to stop worrying and love the #blog. Comes about a year since I went indie (http://kartikprabhu.com/article/indieweb-love-blog)', $output['items'][0]['properties']['content'][0]['value']);
+	}
 }

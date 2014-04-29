@@ -14,6 +14,18 @@ function parseTwitter($html, $url=null) {
 
 class Twitter extends Mf2\Parser {
 	public function parseTweet(DOMElement $el, $parseReplies=true) {
+		$linksToExpand = $this->query('.//*[@data-expanded-url]', $el);
+		/** @var $linkEl DOMElement */
+		foreach ($linksToExpand as $linkEl) {
+			foreach ($linkEl->childNodes as $child) {
+				$linkEl->removeChild($child);
+			}
+			$newLinkEl = $this->doc->createElement('a');
+			$newLinkEl->setAttribute('href', $linkEl->getAttribute('data-expanded-url'));
+			$newLinkEl->nodeValue = $linkEl->getAttribute('data-expanded-url');
+			$linkEl->parentNode->replaceChild($newLinkEl, $linkEl);
+		}
+
 		$tweetTextEl = $this->query('.//p' . Mf2\xpcs('tweet-text'), $el)->item(0);
 
 		$authorNameEl = $this->query('.//*' . Mf2\xpcs('fullname'), $el)->item(0);
@@ -29,7 +41,7 @@ class Twitter extends Mf2\Parser {
 		}
 
 		$urlEl = $this->query('.//*' . Mf2\xpcs('tweet-timestamp'), $el)->item(0);
-		
+
 		$htmlTweetContent = '';
 		foreach ($tweetTextEl->childNodes as $node) {
 			$htmlTweetContent .= $node->C14N();
@@ -42,7 +54,7 @@ class Twitter extends Mf2\Parser {
 				'name' => array($tweetTextEl->nodeValue),
 				'content' => array(array(
 					'value' => $tweetTextEl->nodeValue,
-					'html' =>  $htmlTweetContent
+					'html' => $htmlTweetContent
 				)),
 				'summary' => array($tweetTextEl->nodeValue),
 				'url' => array($this->resolveUrl($urlEl->getAttribute('href'))),
@@ -102,9 +114,11 @@ class Twitter extends Mf2\Parser {
 		}
 		
 		$permalinkTweets = $this->query('//*' . Mf2\xpcs('tweet', 'permalink-tweet'));
-		if ($permalinkTweets->length == 1) {
+		if ($permalinkTweets->length > 0) {
 			foreach($permalinkTweets as $node) {
 				$items[] = $this->parseTweet($node);
+				// In some cases there are multiple “permalink” tweets — only grab the first.
+				break;
 			}
 		} else {
 			foreach ($this->query('//*' . Mf2\xpcs('stream-items') . '//*' . Mf2\xpcs('tweet')) as $node) {
