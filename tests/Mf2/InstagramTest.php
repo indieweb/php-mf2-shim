@@ -17,7 +17,7 @@ class InstagramTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testHEntryFromPhoto() {
-        $input = file_get_contents('./tests/mf2/example-instagram.html');
+        $input = file_get_contents('./tests/Mf2/example-instagram.html');
         $parser = new Shim\Instagram($input);
         $output = $parser->parse();
 
