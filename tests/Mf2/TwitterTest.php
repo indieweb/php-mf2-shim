@@ -81,4 +81,18 @@ class TwitterTest extends PHPUnit_Framework_TestCase {
 		$output = Mf2\shim\parseTwitter($input, 'https://twitter.com/kartik_prabhu/status/449032538476929024');
 		$this->assertEquals('The #indieweb or: how I learnt to stop worrying and love the #blog. Comes about a year since I went indie (http://kartikprabhu.com/article/indieweb-love-blog)', $output['items'][0]['properties']['content'][0]['value']);
 	}
+
+	public function testParsesInReplyToFromTweet() {
+		$input = file_get_contents('./tests/Mf2/reply-thread-twitter.html');
+		$output = Mf2\Shim\parseTwitter($input);
+		$this->assertArrayHasKey('items', $output);
+		$this->assertCount(1, $output['items']);
+
+		$this->assertArrayHasKey('in-reply-to', $output['items'][0]['properties']);
+		print_r($output['items'][0]['properties']['url']);
+
+		$this->assertEquals('https://twitter.com/dissolve333/status/581195205161811968', $output['items'][0]['properties']['in-reply-to'][0]);
+
+		return $output;
+	}
 }

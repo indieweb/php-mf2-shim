@@ -13,7 +13,7 @@ function parseFacebook($html, $url=null) {
 }
 
 function fbTimeToIso8601($t) {
-	echo $t;
+	//echo $t;
 	$dt = DateTime::createFromFormat('l, F j, Y \a\t g:ia', $t);
 	return $dt ? $dt->format(DateTime::ISO8601) : null;
 }
