@@ -15,10 +15,10 @@ class FacebookTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testParsesHEntryFromPostPermalinkHtml() {
-		$input = file_get_contents('./tests/mf2/example-facebook.html');
+		$input = file_get_contents('./tests/Mf2/example-facebook.html');
 		$output = Mf2\Shim\parseFacebook($input, 'https://www.facebook.com/barnaby.walters/posts/587281857995088');
 		
-		print_r($output);
+		//print_r($output);
 		
 		$this->assertArrayHasKey('items', $output);
 		$this->assertCount(1, $output['items']);

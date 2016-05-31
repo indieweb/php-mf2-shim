@@ -28,6 +28,16 @@ class Twitter extends Mf2\Parser {
 
 		$tweetTextEl = $this->query('.//p' . Mf2\xpcs('tweet-text'), $el)->item(0);
 
+        $context = $this->query('//*' . Mf2\xpcs('in-reply-to') . '')->item(0);
+        if(!empty($context)){
+            $inReplyToId = $context->getAttribute('data-replied-tweet-id');
+			foreach ($this->query('//*' . Mf2\xpcs('permalink-in-reply-tos') . '//*' . Mf2\xpcs('tweet')) as $replyTo) {
+                if($replyTo->getAttribute('data-tweet-id') == $inReplyToId){
+                    $inReplyToUrl =  $this->query('.//*' . Mf2\xpcs('tweet-timestamp'), $replyTo)->item(0);
+                }
+            }
+        }
+
 		$authorNameEl = $this->query('.//*' . Mf2\xpcs('fullname'), $el)->item(0);
 		$authorNickEl = $this->query('.//*' . Mf2\xpcs('username'), $el)->item(0);
 		$authorPhotoEl = $this->query('.//*' . Mf2\xpcs('avatar'), $el)->item(0);
@@ -73,6 +83,9 @@ class Twitter extends Mf2\Parser {
 				)
 			)
 		);
+        if(isset($inReplyToUrl)){
+            $tweet['properties']['in-reply-to'] = array($this->resolveUrl($inReplyToUrl->getAttribute('href')));
+        }
 		
 		if ($parseReplies) {
 			foreach ($this->query('//*' . Mf2\xpcs('permalink-replies') . '//*' . Mf2\xpcs('tweet')) as $reply) {
